@@ -1,13 +1,269 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/*
+=============== 
+Variables
+===============
+*/
+
+:root {
+  /* colors*/
+  --clr-bg-header: hsl(0, 0%, 0%);
+  --clr-white: hsl(0, 0%, 100%, 1);
+  --clr-bg-gray: hsla(0, 0%, 98%, 1);
+  --clr-red: hsla(0, 100%, 45%, 1);
+  --clr-red-sessionDuration-bg: hsla(0, 100%, 50%, 1);
+  --clr-red-radar:hsla(0, 100%, 50%, 0.7) ;
+  --transition: all 0.3s linear;
+  --spacing: 0.1rem;
+  --radius: 0.3125rem;
+  --gray-header-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  --card-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+  --min-width: 1024px;
+  --min-height: 780px;
+}
+/*
+=============== 
+Global Styles
+===============
+*/
+
+*,
+::after,
+::before {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  min-width:1440px;
+  min-height:1024px;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: var(--spacing);
+  line-height: 1.25;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+h4 {
+  font-size: 0.875rem;
+}
+p {
+  margin-bottom: 1.25rem;
+  font-size:1.125rem;
+}
+main{
+  background-color: var(--clr-white);
+  width:100%;
+  margin:68px 90px 86px 107px;
+}
+/*
+=============== 
+Header
+===============
+*/
+header{
+  background-color: var(--clr-bg-header);
+  height:91px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo{
+  padding-left:29px;
+}
+nav{
+  width: 100%;
+}
+.navList{
+  display: flex;
+  align-items:center;
+}
+.navList li{
+  color: var(--clr-white);
+  font-weight: 500;
+  font-size: 24px;
+  margin-left:12.75rem;
+}
+.linkNav{
+  text-decoration: none;
+  color: var(--clr-white);
+}
+/*
+=============== 
+Aside
+===============
+*/
+
+aside{
+  background-color: var(--clr-bg-header);
+  width:117px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap: 200px;
+  height: 100vh;
+  
+}
+.copyRight{
+  color: var(--clr-white);
+  transform: rotate(270deg);
+  width:138px;
+  font-size:12px;
+  font-weight:500;
+
+}
+.logoSport{
+  padding-top:257px;
+  
+}
+.listLogoSport li{
+  margin-bottom:20px;
+}
+.mainContainer{
+  display:flex;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/*
+=============== 
+Title
+===============
+*/
+.titleContainer{
+  height:130px;
+  }
+.felicitation{
+  margin-top:44px;
+  margin-bottom:0;
+}
+.nameTitle{
+  color:var(--clr-red);
+}
+/*
+=============== 
+Profil
+===============
+*/
+.chartsContainer{
+  display: flex;
+  gap:31px;
+  margin-top:60px;
+}
+.charts{
+  width:835px;
+  display: flex;
+  flex-direction:column;
+  gap:30px;
+}
+.threeChartsContainer{
+  display:flex;
+  gap:30px
+}
+.cardsContainer{
+  width:258px;
+  display:flex;
+  flex-direction:column;
+  gap:39px;
+}
+/*
+=============== 
+CardUserData
+===============
+*/
+.card{
+  background-color:var(--clr-bg-gray);
+  box-shadow:var(--card-shadow);
+  width:258px;
+  height:124px;
+  border-radius:5px;
+  display:flex;
+  align-items: center;
+}
+.cardImg{
+  margin-left:32px;
+}
+.unit{
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom:4px;
+}
+.nutri{
+  font-weight: 500;
+  font-size: 14px;
+  color:#74798C;
+
+}
+.cardText{
+  margin-left:24px;
+  margin-top:14px;
+}
+/*
+=============== 
+BarChart
+===============
+*/
+
+.BarChartContainer{
+  background-color:var(--clr-bg-gray);
+  box-shadow:var(--card-shadow);
+  width:835px;
+  height:320px;
+}
+  /*
+=============== 
+LineChart
+===============
+*/
+
+.LineChartContainer{
+  width:258px;
+  height:263px;
+  background:var(--clr-red-sessionDuration-bg);
+  box-shadow:var(--card-shadow);
+  border-radius: 5px;
+}
+  /*
+=============== 
+RadarChart
+===============
+*/
+
+.RadarChartContainer{
+  width:258px;
+  height:263px;
+  background: hsla(203, 9%, 17%, 1);
+  box-shadow:var(--card-shadow);
+  border-radius: 5px;
+}
+  /*
+=============== 
+PieChart
+===============
+*/
+.PieChartContainer{
+  width:258px;
+  height:263px;
+  background-color:var(--clr-bg-gray);
+  box-shadow:var(--card-shadow);
+  border-radius: 5px;
 }
