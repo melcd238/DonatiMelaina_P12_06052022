@@ -8,7 +8,6 @@ import Lipid from '../../Assets/fat-icon.svg';
 
 const CardUserData = ({keydata})=>{
     
-    console.log(keydata)
     return(
         <>
            <div className="card">

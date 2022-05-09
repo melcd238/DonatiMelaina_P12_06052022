@@ -18,13 +18,16 @@ const Profil = ()=>{
     const [keydata, setKeyData] = useState({})
    const [id, setId] = useState(12);
    const userMocked = {user : USER_MAIN_DATA, activity: USER_ACTIVITY, session:USER_AVERAGE_SESSIONS, performance:USER_PERFORMANCE};
+   
+  
 
- 
+
 
    useEffect(()=>{
        console.log(userMocked);
        setUserData({...userMocked});
        setKeyData({...userMocked.user.keyData})
+  
    },[id])
 
     return(
@@ -36,7 +39,7 @@ const Profil = ()=>{
                    <div className="threeChartsContainer">
                       <LineChart/>
                       <RadarChart/>
-                      <PieChart userData={userData.user}/>
+                      <PieChart userData={userData}/>
                    </div>
                </div>
                <div className="cardsContainer">
