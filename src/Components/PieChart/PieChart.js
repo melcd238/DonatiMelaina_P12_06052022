@@ -13,7 +13,7 @@ const PieChart = ({userData})=>{
     const DrawPieChart = (elt, data) =>{
         console.log(data)
         const colors = ["#FF0000","#FBFBFB"];
-        const boxSize = 900;
+        const boxSize = 500;
 
         d3.select(elt).select("svg").remove() // remove odl svg
 
@@ -37,10 +37,11 @@ const PieChart = ({userData})=>{
              .transition()
              .duration(700)
              .attr("stroke-width", 8); 
-           /*  svg    
-            .append("text")
+           /*  svg
+             
+             .append("text")
             .attr("text-anchor", "middle")
-            .text((d)=>`${d.data.value}%`)  //text
+            .text((d)=>`${d.data.value}%`)  
             .style("fill","#282D30") 
             .style('font-size', "26px")
             .style('font-weight', '700') */
@@ -65,10 +66,12 @@ const PieChart = ({userData})=>{
       DrawPieChart(ref.current, data);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ref]);
+  }, [data]);
     return(
         <div className="PieChartContainer">
-            <div className="graph" ref={ref} />
+          <p>Score</p>
+            <div className="graph" ref={ref}>
+            </div> 
         </div>
     )
 }
