@@ -37,14 +37,7 @@ const PieChart = ({userData})=>{
              .transition()
              .duration(700)
              .attr("stroke-width", 8); 
-           /*  svg
-             
-             .append("text")
-            .attr("text-anchor", "middle")
-            .text((d)=>`${d.data.value}%`)  
-            .style("fill","#282D30") 
-            .style('font-size', "26px")
-            .style('font-weight', '700') */
+    
         
         const arcGenerator = d3.arc().cornerRadius(18).innerRadius(220).outerRadius(250);
 
@@ -54,7 +47,27 @@ const PieChart = ({userData})=>{
              arcs
                .append("path")
                .attr("d", arcGenerator)  
-               .style("fill", (d, i) => colors[i % data.length]);    
+               .style("fill", (d, i) => colors[i % data.length]);  
+        const legend = svg
+             .selectAll('.legend')
+             .data(data)
+             .enter()
+             .append('g')
+             .attr('class','legend')
+             .attr('transform', function(d,i){
+               return 'translate(' + 0 + ',' + 0 + ')';
+             })
+             legend 
+                .append('text')
+                .attr('x', 0)
+                .attr('y', 0)
+                .attr('text-anchor', 'middle')
+                .text(function(d){
+                  return scoreData + '%'
+                })
+                .style("fill","#282D30")
+                .style('font-size', "60px")
+                .style('font-weight', '700')          
 
 
     
