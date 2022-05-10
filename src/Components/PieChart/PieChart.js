@@ -67,7 +67,29 @@ const PieChart = ({userData})=>{
                 })
                 .style("fill","#282D30")
                 .style('font-size', "60px")
-                .style('font-weight', '700')          
+                .style('font-weight', '700') 
+              legend 
+                .append('text')
+                .attr('x', 0)
+                .attr('y', 40)
+                .attr('text-anchor', 'middle')
+                .text(function(d){
+                  return 'de votre'
+                })
+                .style("fill","#74798C")
+                .style('font-size', "40px")
+                .style('font-weight', '500')  
+                legend 
+                .append('text')
+                .attr('x', 0)
+                .attr('y', 80)
+                .attr('text-anchor', 'middle')
+                .text(function(d){
+                  return 'objectif'
+                })
+                .style("fill","#74798C")
+                .style('font-size', "40px")
+                .style('font-weight', '500')          
 
 
     
