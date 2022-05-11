@@ -10,7 +10,7 @@ const LineChart = ({userData})=>{
 
     const DrawLineChart =(elt,data)=>{
        // const boxSize = 900;
-       const margin = {top:29,right: 10,bottom:20, left:20}
+       const margin = {top:34,right: 10,bottom:20, left:20}
        const width = 258 - margin.left - margin.right
        const height = 253 - margin.top - margin.bottom
 
@@ -38,15 +38,15 @@ const LineChart = ({userData})=>{
                .call(d3.axisBottom(x))    
 
            //Add Y Axis ( not visible)
-           const y = d3.scaleLinear()
+          const y = d3.scaleLinear()
                 .domain(d3.extent(data, function(d){return d.sessionLength}))
                 .range([ height, 0 ]);
              svg.append("g")
-                .call(d3.axisLeft(y));
+                .call(d3.axisLeft(y)); 
 
            // Add the line
 
-           svg.append("path")
+          svg.append("path")
               .datum(data)
               .attr("fill", "none")
               .attr("stroke", "#ffffff")
@@ -54,20 +54,53 @@ const LineChart = ({userData})=>{
               .attr("d", d3.line()
                    .x(function(d) { return x(d.day) })
                    .y(function(d) { return y(d.sessionLength) })
-                 )
-          
+                 ) 
 
            // Add The points
 
-           svg.append("g")
+          svg.append("g")
               .selectAll("dot")
               .data(data)
               .enter()
               .append("circle")
                  .attr("cx", function(d) { return x(d.day) })
                  .attr("cy", function(d) { return y(d.sessionLength)})
-                 .attr("r", 5)
+                 .attr("r", 3)
                  .attr("fill", "#ffffff")
+
+           // Add Legend
+           const legend = svg
+           .selectAll('.legend')
+           .data(data)
+           .enter()
+           .append('g')
+           .attr('class','legend')
+           .attr('transform', function(d,i){
+             return 'translate(' + 0 + ',' + 0 + ')';
+           })
+           legend 
+              .append('text')
+              .attr('x', 76)
+              .attr('y', 10)
+              .attr('text-anchor', 'middle')
+              .text(function(d){
+                return "Durée moyenne des"
+              })
+              .style("fill","rgba(255, 255, 255, .1)")
+              .style('font-size', "14px")
+              .style('font-weight', '500') 
+            legend 
+              .append('text')
+              .attr('x', 40)
+              .attr('y', 32)
+              .attr('text-anchor', 'middle')
+              .text(function(d){
+                return 'session'
+              })
+              .style("fill","rgba(255, 255, 255, .1)")
+              .style('font-size', "14px")
+              .style('font-weight', '500')  
+
 
 
            // Add the tooltips
