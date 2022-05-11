@@ -6,12 +6,12 @@ import * as d3 from "d3";
 const PieChart = ({userData})=>{
    let scoreData = userData.user?.todayScore * 100;
    const data =[{value: scoreData},{value:100 - scoreData}]
-   console.log(data)
+  // console.log(data)
    const ref = useRef(null);
 
     // With D3 : draw SVG
     const DrawPieChart = (elt, data) =>{
-        console.log(data)
+       // console.log(data)
         const colors = ["#FF0000","#FBFBFB"];
         const boxSize = 500;
 
@@ -71,7 +71,7 @@ const PieChart = ({userData})=>{
               legend 
                 .append('text')
                 .attr('x', 0)
-                .attr('y', 40)
+                .attr('y', 60)
                 .attr('text-anchor', 'middle')
                 .text(function(d){
                   return 'de votre'
@@ -82,7 +82,7 @@ const PieChart = ({userData})=>{
                 legend 
                 .append('text')
                 .attr('x', 0)
-                .attr('y', 80)
+                .attr('y', 120)
                 .attr('text-anchor', 'middle')
                 .text(function(d){
                   return 'objectif'

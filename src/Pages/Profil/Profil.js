@@ -24,7 +24,7 @@ const Profil = ()=>{
 
 
    useEffect(()=>{
-       console.log(userMocked);
+      // console.log(userMocked);
        setUserData({...userMocked});
        setKeyData({...userMocked.user.keyData})
   
@@ -37,7 +37,7 @@ const Profil = ()=>{
                <div className="charts">
                    <BarChart/>
                    <div className="threeChartsContainer">
-                      <LineChart/>
+                      <LineChart userData={userData}/>
                       <RadarChart/>
                       <PieChart userData={userData}/>
                    </div>
