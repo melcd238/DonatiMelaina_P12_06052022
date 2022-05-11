@@ -3,13 +3,18 @@ import * as d3 from "d3";
 
 
 const LineChart = ({userData})=>{
-    const data = userData.session?.sessions
-    console.log(data)
+    const data = userData.session?.sessions;
+   // console.log(userData)
     const ref = useRef(null)
+
+    /* Reste : - modifier la data day pour avoir les jour.
+               - faire disparaitre les axes Y avec ls valeurs
+               -faire disparaitre l'axe des x en ne gardant que les valeurs
+               -faire le toolTips au survol
+               -arrondir la ligne */
     
 
-    const DrawLineChart =(elt,data)=>{
-       // const boxSize = 900;
+   const DrawLineChart =(elt,data)=>{
        const margin = {top:34,right: 10,bottom:20, left:20}
        const width = 258 - margin.left - margin.right
        const height = 253 - margin.top - margin.bottom
@@ -17,20 +22,18 @@ const LineChart = ({userData})=>{
         d3.select(elt).select("svg").remove() // remove odl svg
 
            //new svg
-           const svg = d3 
+          const svg = d3 
            .select(elt)
            .append("svg")
            .attr("preserveAspectRatio", "xMidYMid meet")
            .attr("height", height + margin.top + margin.bottom )
            .attr("width", width + margin.left + margin.right)
-          // .attr("viewBox", `0 0 ${boxSize} ${boxSize}`)
            .append("g")
-          // .attr("transform", `translate(${boxSize / 2}, ${boxSize / 2})`);
            .attr('transform', 'translate(' + margin.left + "," + margin.top + ")");
 
            //Add X axis 
 
-         const x = d3.scaleLinear()
+         const x = d3.scaleTime()
                  .domain(d3.extent(data, function(d){return d.day}))
                  .range([ 0, width])
               svg.append("g")
@@ -65,7 +68,7 @@ const LineChart = ({userData})=>{
               .append("circle")
                  .attr("cx", function(d) { return x(d.day) })
                  .attr("cy", function(d) { return y(d.sessionLength)})
-                 .attr("r", 3)
+                 .attr("r", 1)
                  .attr("fill", "#ffffff")
 
            // Add Legend
@@ -103,7 +106,7 @@ const LineChart = ({userData})=>{
 
 
 
-           // Add the tooltips
+           // Add the tooltips 
 
     }
 

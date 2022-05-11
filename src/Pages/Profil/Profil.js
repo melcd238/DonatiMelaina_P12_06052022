@@ -38,7 +38,7 @@ const Profil = ()=>{
                    <BarChart/>
                    <div className="threeChartsContainer">
                       <LineChart userData={userData}/>
-                      <RadarChart/>
+                      <RadarChart userData={userData}/>
                       <PieChart userData={userData}/>
                    </div>
                </div>
