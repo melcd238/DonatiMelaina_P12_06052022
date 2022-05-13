@@ -3,8 +3,8 @@ import * as d3 from "d3";
 
 
 
-const PieChart = ({userData})=>{
-   let scoreData = userData.user?.todayScore * 100;
+const PieChart = ({score})=>{
+   let scoreData = score * 100;
    const data =[{value: scoreData},{value:100 - scoreData}]
   // console.log(data)
    const ref = useRef(null);

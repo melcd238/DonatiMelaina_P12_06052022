@@ -13,8 +13,8 @@ const Header = () =>{
             </div>
             <nav>
                 <ul className="navList">
-                    <li>Accueil</li>
-                    <li><Link className="linkNav" to="profil/:id"> Profil</Link></li>
+                    <li><Link className="linkNav" to="/">Accueil</Link></li>
+                    <li>Profil</li>
                     <li>Réglage</li>
                     <li>Communauté</li>
                 </ul>

@@ -1,9 +1,28 @@
-import React from "react"
+import React, {useRef, useEffect}  from "react"
+import * as d3 from "d3";
 
 
-const BarChart = ()=>{
+const BarChart = ({activity})=>{
+   
+
+    const ref = useRef(null)
+
+    const DrawBarChart = (elt,data)=>{
+
+    }
+
+    useEffect(()=>{
+        if(ref.current){
+            DrawBarChart(ref.current)
+        }
+    }, [])
+
+
+    
+
+
     return(
-        <div className="BarChartContainer">
+        <div className="BarChartContainer" ref={ref}>
         </div>
     )
 }

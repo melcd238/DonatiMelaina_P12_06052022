@@ -1,54 +1,67 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom';
+
+import { getUserMainDataMocked, getUserActivityMocked, getUserAverageSessionsMocked, getUserPerformanceMocked } from '../../Services/CallMockedData';
 
 import Title from '../../Components/Title/Title';
 import CardUserData from "../../Components/CardUserData/CardUserData";
-import BarChart from "../../Components/BarChart/BarChart";
-import LineChart from "../../Components/LineChart/LineChart";
-import RadarChart from "../../Components/RadarChart/RadarChart";
+//import BarChart from "../../Components/BarChart/BarChart";
+//import LineChart from "../../Components/LineChart/LineChart";
+//import RadarChart from "../../Components/RadarChart/RadarChart";
 import PieChart from "../../Components/PieChart/PieChart";
 
 
 
 
-import { USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_MAIN_DATA, USER_PERFORMANCE } from '../../Services/CallMock';
-
-
 const Profil = ()=>{
-    const [userData, setUserData] = useState({});
-    const [keydata, setKeyData] = useState({})
-   const [id, setId] = useState(12);
-   const userMocked = {user : USER_MAIN_DATA, activity: USER_ACTIVITY, session:USER_AVERAGE_SESSIONS, performance:USER_PERFORMANCE};
+   const [userData, setUserData] =useState([]) 
+   const { id } = useParams()
    
   
+   
 
 
 
    useEffect(()=>{
-      // console.log(userMocked);
-       setUserData({...userMocked});
-       setKeyData({...userMocked.user.keyData})
-  
+       /* Faire un if si l'api ne fonctionne pas on set le userData avec les données mockées*/ 
+    const getUserData = async ()=>{
+        const response = await getUserMainDataMocked(id);
+        setUserData(response.data)
+    } 
+    getUserData()
+    
    },[id])
 
-    return(
-        <main>
-           <Title userData={userData}/>
-           <section className="chartsContainer">
-               <div className="charts">
-                   <BarChart/>
-                   <div className="threeChartsContainer">
-                      <LineChart userData={userData}/>
-                      <RadarChart userData={userData}/>
-                      <PieChart userData={userData}/>
-                   </div>
-               </div>
-               <div className="cardsContainer">
-                 <CardUserData keydata={keydata}/>
-               </div>
+ 
+return(
+        
+    <main>
+    <Title firstName = {userData.userInfos?.firstName}/>
+    <section className="chartsContainer">
+        <div className="charts">
+           
+            <div className="threeChartsContainer">
+              <PieChart score={userData?.todayScore || userData?.score}/>
+              
+              
+            </div>
+        </div>
+        <div className="cardsContainer">
+          <CardUserData keyData={userData?.keyData}/>
+        </div>
 
-           </section>
-        </main>
-    )
+    </section>
+ </main>
+
+
+   
+)  
+
+
+
 }
+
+   
+
 
 export default Profil

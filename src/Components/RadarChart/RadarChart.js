@@ -2,9 +2,9 @@ import React, {useRef, useEffect}  from "react"
 import * as d3 from "d3";
 
 
-const RadarChart = ({userData})=>{
-    const data = userData?.performance
-    console.log(data)
+const RadarChart = ()=>{
+   
+   
     const ref = useRef(null)
 
     const DrawRadarChart = (elt , data)=>{
@@ -19,10 +19,10 @@ const RadarChart = ({userData})=>{
 
     useEffect(()=>{
         if (ref.current) {
-            DrawRadarChart(ref.current, data);
+            DrawRadarChart(ref.current);
           }
           // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[data])
+    },[])
 
 
     return(

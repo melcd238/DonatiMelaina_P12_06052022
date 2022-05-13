@@ -2,13 +2,60 @@ import React, {useRef, useEffect}  from "react"
 import * as d3 from "d3";
 
 
-const LineChart = ({userData})=>{
-    const data = userData.session?.sessions;
-   // console.log(userData)
+
+
+const LineChart = ({session})=>{
+
+    
+    const dataNotFormated = session?.sessions
+ /*   const data = dataNotFormated.map((d)=>{
+      switch (data.day){
+        case 1 :
+          return {...data, days: "L"};
+        case 2 :  
+        return {...data, days: "M"};
+        case 3 :  
+        return {...data, days: "M"};
+        case 4 :  
+        return {...data, days: "J"};
+        case 5 :  
+        return {...data, days: "V"};
+        case 6 :  
+        return {...data, days: "S"};
+        case 7 :  
+        return {...data, days: "D"};
+        default :
+        return {...data};
+      }
+  })
+    
+    /*.map((d)=>{
+        switch (data.day){
+          case 1 :
+            return {...data, days: "L"};
+          case 2 :  
+          return {...data, days: "M"};
+          case 3 :  
+          return {...data, days: "M"};
+          case 4 :  
+          return {...data, days: "J"};
+          case 5 :  
+          return {...data, days: "V"};
+          case 6 :  
+          return {...data, days: "S"};
+          case 7 :  
+          return {...data, days: "D"};
+          default :
+          return {...data};
+        }
+    })*/
+   
+  
+    
     const ref = useRef(null)
 
     /* Reste : - modifier la data day pour avoir les jour.
-               - faire disparaitre les axes Y avec ls valeurs
+               - faire disparaitre les axes Y  en gardant les valeurs
                -faire disparaitre l'axe des x en ne gardant que les valeurs
                -faire le toolTips au survol
                -arrondir la ligne */
@@ -22,7 +69,7 @@ const LineChart = ({userData})=>{
         d3.select(elt).select("svg").remove() // remove odl svg
 
            //new svg
-          const svg = d3 
+  /*        const svg = d3 
            .select(elt)
            .append("svg")
            .attr("preserveAspectRatio", "xMidYMid meet")
@@ -33,11 +80,14 @@ const LineChart = ({userData})=>{
 
            //Add X axis 
 
-         const x = d3.scaleTime()
+       const x = d3.scaleTime()
                  .domain(d3.extent(data, function(d){return d.day}))
                  .range([ 0, width])
+                 
               svg.append("g")
                .attr("transform", "translate(0," + height + ")")
+               .attr("stroke", "rgba(255, 255, 255, .6")
+               .attr("stroke-width", 0)
                .call(d3.axisBottom(x))    
 
            //Add Y Axis ( not visible)
@@ -53,7 +103,7 @@ const LineChart = ({userData})=>{
               .datum(data)
               .attr("fill", "none")
               .attr("stroke", "#ffffff")
-              .attr("stroke-width", 1.5)
+              .attr("stroke-width", 2)
               .attr("d", d3.line()
                    .x(function(d) { return x(d.day) })
                    .y(function(d) { return y(d.sessionLength) })
@@ -69,7 +119,7 @@ const LineChart = ({userData})=>{
                  .attr("cx", function(d) { return x(d.day) })
                  .attr("cy", function(d) { return y(d.sessionLength)})
                  .attr("r", 1)
-                 .attr("fill", "#ffffff")
+                 .attr("fill", "#ffffff") 
 
            // Add Legend
            const legend = svg
@@ -102,8 +152,7 @@ const LineChart = ({userData})=>{
               })
               .style("fill","rgba(255, 255, 255, .1)")
               .style('font-size', "14px")
-              .style('font-weight', '500')  
-
+              .style('font-weight', '500')  */
 
 
            // Add the tooltips 
@@ -113,10 +162,10 @@ const LineChart = ({userData})=>{
 
     useEffect(() => {
         if (ref.current) {
-          DrawLineChart(ref.current, data);
+          DrawLineChart(ref.current);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [data]);
+      }, []);
     
     return(
         <div className="LineChartContainer" ref={ref}>

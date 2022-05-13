@@ -6,7 +6,7 @@ import Protein from '../../Assets/protein-icon.svg';
 import Glucid from '../../Assets/carbs-icon.svg';
 import Lipid from '../../Assets/fat-icon.svg';
 
-const CardUserData = ({keydata})=>{
+const CardUserData = ({keyData})=>{
     
     return(
         <>
@@ -15,7 +15,7 @@ const CardUserData = ({keydata})=>{
                    <img src={Calorie} alt="logo calories"/>
                </div>
                <div className="cardText">
-                   <p className="unit">{keydata.calorieCount}Kcal</p>
+                   <p className="unit">{keyData?.calorieCount}Kcal</p>
                    <p className="nutri">Calories</p>
                </div>
           </div>
@@ -25,7 +25,7 @@ const CardUserData = ({keydata})=>{
                    <img src={Protein} alt="logo calories"/>
                </div>
                <div className="cardText">
-                   <p className="unit">{keydata.proteinCount}g</p>
+                   <p className="unit">{keyData?.proteinCount}g</p>
                    <p className="nutri">Protéines</p>
                </div>
            </div>
@@ -35,7 +35,7 @@ const CardUserData = ({keydata})=>{
                    <img src={Glucid} alt="logo calories"/>
                </div>
                <div className="cardText">
-                   <p className="unit">{keydata.carbohydrateCount}g</p>
+                   <p className="unit">{keyData?.carbohydrateCount}g</p>
                    <p className="nutri">Glucides</p>
                </div>
            </div>
@@ -45,7 +45,7 @@ const CardUserData = ({keydata})=>{
                    <img src={Lipid} alt="logo calories"/>
                </div>
                <div className="cardText">
-                   <p className="unit">{keydata.lipidCount}g</p>
+                   <p className="unit">{keyData?.lipidCount}g</p>
                    <p className="nutri">Lipides</p>
                </div>
            </div> 
