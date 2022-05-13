@@ -11,19 +11,19 @@ const LineChart = ({sessions})=>{
     const data = sessions.map((data)=>{
       switch (data.day){
         case 1 :
-          return {...data, days: "L"};
+          return {...data, day: "L"};
         case 2 :  
-        return {...data, days: "M"};
+        return {...data, day: "M"};
         case 3 :  
-        return {...data, days: "M"};
+        return {...data, day: "M "};
         case 4 :  
-        return {...data, days: "J"};
+        return {...data, day: "J"};
         case 5 :  
-        return {...data, days: "V"};
+        return {...data, day: "V"};
         case 6 :  
-        return {...data, days: "S"};
+        return {...data, day: "S"};
         case 7 :  
-        return {...data, days: "D"};
+        return {...data, day: "D"};
         default :
         return {...data};
       }
@@ -36,13 +36,13 @@ const LineChart = ({sessions})=>{
     
     const ref = useRef(null)
 
-    /* Reste : - rajouter les valeur days a la place de day
+    /* Reste : 
                -faire le toolTips au survol
-               -arrondir la ligne */
+                */
     
 
    const DrawLineChart =(elt,data)=>{
-       const margin = {top:34,right: 10,bottom:20, left:20}
+       const margin = {top:34,right:14,bottom:20, left:14}
        const width = 258 - margin.left - margin.right
        const height = 253 - margin.top - margin.bottom
 
@@ -60,18 +60,23 @@ const LineChart = ({sessions})=>{
 
            //Add X axis 
 
-       const x = d3.scaleLinear()
-                 .domain([1 , data.length])
+       const x = d3.scaleBand()
+                 .domain(data.map(d => d.day))
                  .range([ 0, width])
+                 .paddingInner(1)
                  
               svg.append("g")
                .attr("transform", "translate(0," + height + ")")
-               .call(d3.axisBottom(x).ticks(7)).attr("stroke-width",0)   
+               .call(d3.axisBottom(x))
+               .attr("stroke-width", 0)
+               .style("color", "rgba(255, 255, 255, .6)")
+               .style("font-weight", "500") 
+               .style("font-size","12px")
 
            //Add Y Axis ( not visible)
           const y = d3.scaleLinear()
                 .domain(d3.extent(data, function(d){return d.sessionLength}))
-                .range([ height - 20, 40 ]);
+                .range([ height - 20, 60 ]);
              svg.append("g")
                 .call(d3.axisLeft(y).ticks(0)).attr("stroke-width",0); 
 
@@ -83,7 +88,7 @@ const LineChart = ({sessions})=>{
               .attr("stroke", "#ffffff")
               .attr("stroke-width", 2)
               .attr("d", d3.line()
-                   .curve(d3.curveNatural)
+                   .curve(d3.curveCardinal)
                    .x(function(d) { return x(d.day) })
                    .y(function(d) { return y(d.sessionLength) })
                  ) 
@@ -97,7 +102,7 @@ const LineChart = ({sessions})=>{
               .append("circle")
                  .attr("cx", function(d) { return x(d.day) })
                  .attr("cy", function(d) { return y(d.sessionLength)})
-                 .attr("r", 1)
+                 .attr("r", 2)
                  .attr("fill", "#ffffff") 
 
            // Add Legend
