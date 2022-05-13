@@ -3,7 +3,8 @@ import * as d3 from "d3";
 
 
 const BarChart = ({activity})=>{
-   
+   const data = activity;
+   console.log(data)
 
     const ref = useRef(null)
 
@@ -13,9 +14,9 @@ const BarChart = ({activity})=>{
 
     useEffect(()=>{
         if(ref.current){
-            DrawBarChart(ref.current)
+            DrawBarChart(ref.current, data)
         }
-    }, [])
+    }, [data])
 
 
     
