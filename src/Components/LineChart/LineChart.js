@@ -1,14 +1,14 @@
 import React, {useRef, useEffect}  from "react"
 import * as d3 from "d3";
+import { curveNatural } from "d3";
 
 
 
 
-const LineChart = ({session})=>{
-
-    
-    const dataNotFormated = session?.sessions
- /*   const data = dataNotFormated.map((d)=>{
+const LineChart = ({sessions})=>{
+   
+   
+    const data = sessions.map((data)=>{
       switch (data.day){
         case 1 :
           return {...data, days: "L"};
@@ -27,36 +27,16 @@ const LineChart = ({session})=>{
         default :
         return {...data};
       }
-  })
+
+    })
     
-    /*.map((d)=>{
-        switch (data.day){
-          case 1 :
-            return {...data, days: "L"};
-          case 2 :  
-          return {...data, days: "M"};
-          case 3 :  
-          return {...data, days: "M"};
-          case 4 :  
-          return {...data, days: "J"};
-          case 5 :  
-          return {...data, days: "V"};
-          case 6 :  
-          return {...data, days: "S"};
-          case 7 :  
-          return {...data, days: "D"};
-          default :
-          return {...data};
-        }
-    })*/
-   
+    console.log(data)
+
   
     
     const ref = useRef(null)
 
-    /* Reste : - modifier la data day pour avoir les jour.
-               - faire disparaitre les axes Y  en gardant les valeurs
-               -faire disparaitre l'axe des x en ne gardant que les valeurs
+    /* Reste : - rajouter les valeur days a la place de day
                -faire le toolTips au survol
                -arrondir la ligne */
     
@@ -69,7 +49,7 @@ const LineChart = ({session})=>{
         d3.select(elt).select("svg").remove() // remove odl svg
 
            //new svg
-  /*        const svg = d3 
+         const svg = d3 
            .select(elt)
            .append("svg")
            .attr("preserveAspectRatio", "xMidYMid meet")
@@ -80,22 +60,20 @@ const LineChart = ({session})=>{
 
            //Add X axis 
 
-       const x = d3.scaleTime()
-                 .domain(d3.extent(data, function(d){return d.day}))
+       const x = d3.scaleLinear()
+                 .domain([1 , data.length])
                  .range([ 0, width])
                  
               svg.append("g")
                .attr("transform", "translate(0," + height + ")")
-               .attr("stroke", "rgba(255, 255, 255, .6")
-               .attr("stroke-width", 0)
-               .call(d3.axisBottom(x))    
+               .call(d3.axisBottom(x).ticks(7)).attr("stroke-width",0)   
 
            //Add Y Axis ( not visible)
           const y = d3.scaleLinear()
                 .domain(d3.extent(data, function(d){return d.sessionLength}))
-                .range([ height, 0 ]);
+                .range([ height - 20, 40 ]);
              svg.append("g")
-                .call(d3.axisLeft(y)); 
+                .call(d3.axisLeft(y).ticks(0)).attr("stroke-width",0); 
 
            // Add the line
 
@@ -105,6 +83,7 @@ const LineChart = ({session})=>{
               .attr("stroke", "#ffffff")
               .attr("stroke-width", 2)
               .attr("d", d3.line()
+                   .curve(d3.curveNatural)
                    .x(function(d) { return x(d.day) })
                    .y(function(d) { return y(d.sessionLength) })
                  ) 
@@ -152,7 +131,7 @@ const LineChart = ({session})=>{
               })
               .style("fill","rgba(255, 255, 255, .1)")
               .style('font-size', "14px")
-              .style('font-weight', '500')  */
+              .style('font-weight', '500')  
 
 
            // Add the tooltips 
@@ -162,10 +141,10 @@ const LineChart = ({session})=>{
 
     useEffect(() => {
         if (ref.current) {
-          DrawLineChart(ref.current);
+          DrawLineChart(ref.current, data);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, []);
+      }, [data]);
     
     return(
         <div className="LineChartContainer" ref={ref}>

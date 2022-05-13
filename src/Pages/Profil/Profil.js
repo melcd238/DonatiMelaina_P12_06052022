@@ -6,7 +6,7 @@ import { getUserMainDataMocked, getUserActivityMocked, getUserAverageSessionsMoc
 import Title from '../../Components/Title/Title';
 import CardUserData from "../../Components/CardUserData/CardUserData";
 //import BarChart from "../../Components/BarChart/BarChart";
-//import LineChart from "../../Components/LineChart/LineChart";
+import LineChart from "../../Components/LineChart/LineChart";
 //import RadarChart from "../../Components/RadarChart/RadarChart";
 import PieChart from "../../Components/PieChart/PieChart";
 
@@ -15,6 +15,7 @@ import PieChart from "../../Components/PieChart/PieChart";
 
 const Profil = ()=>{
    const [userData, setUserData] =useState([]) 
+   const [sessions, setSessions] = useState([])
    const { id } = useParams()
    
   
@@ -27,8 +28,14 @@ const Profil = ()=>{
     const getUserData = async ()=>{
         const response = await getUserMainDataMocked(id);
         setUserData(response.data)
-    } 
-    getUserData()
+    }
+    const getUserSession = async ()=>{
+        const response = await getUserAverageSessionsMocked(id)
+        setSessions(response.data.sessions)
+        console.log(response.data.sessions)
+    }
+        getUserData()
+        getUserSession()
     
    },[id])
 
@@ -41,6 +48,7 @@ return(
         <div className="charts">
            
             <div className="threeChartsContainer">
+              <LineChart sessions={sessions}/> 
               <PieChart score={userData?.todayScore || userData?.score}/>
               
               
