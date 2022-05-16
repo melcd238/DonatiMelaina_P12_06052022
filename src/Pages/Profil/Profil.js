@@ -17,6 +17,7 @@ const Profil = ()=>{
    const [userData, setUserData] =useState([]) 
    const [sessions, setSessions] = useState([])
    const [activity, setActivity] = useState([])
+   const [performance, setPerformance] = useState({})
    const { id } = useParams()
    
   
@@ -40,9 +41,14 @@ const Profil = ()=>{
         setActivity(response.data.sessions)
        
     }
+    const getUserPerformance = async ()=>{
+        const response = await getUserPerformanceMocked(id)
+        setPerformance(response.data)
+    }
         getUserData()
         getUserSession()
         getUserActivity()
+        getUserPerformance()
     
    },[id])
 
@@ -56,7 +62,7 @@ return(
               <BarChart activity={activity}/>
             <div className="threeChartsContainer">
               <LineChart sessions={sessions}/> 
-              <RadarChart/>
+              <RadarChart performance={performance}/>
               <PieChart score={userData?.todayScore || userData?.score}/>
               
               

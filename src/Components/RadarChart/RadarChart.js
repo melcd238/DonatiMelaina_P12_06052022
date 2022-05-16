@@ -2,7 +2,19 @@ import React, {useRef, useEffect}  from "react"
 import * as d3 from "d3";
 
 
-const RadarChart = ()=>{
+const RadarChart = ({performance})=>{
+
+    const objKind=performance.kind;
+    const data = performance.data;
+
+  //  console.log(data,objKind)
+
+
+   
+  
+ 
+
+   
    
    
     const ref = useRef(null)
