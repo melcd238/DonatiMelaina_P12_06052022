@@ -32,11 +32,6 @@ const LineChart = ({sessions})=>{
     
     const ref = useRef(null)
 
-    /* Reste : 
-               -faire le toolTips au survol
-                */
-    
-
    const DrawLineChart =(elt,data)=>{
        const margin = {top:34,right:14,bottom:20, left:14}
        const width = 258 - margin.left - margin.right
@@ -98,7 +93,7 @@ const LineChart = ({sessions})=>{
               .append("circle")
                  .attr("cx", function(d) { return x(d.day) })
                  .attr("cy", function(d) { return y(d.sessionLength)})
-                 .attr("r", 2)
+                 .attr("r", 1)
                  .attr("fill", "#ffffff") 
 
            // Add Legend
@@ -136,6 +131,57 @@ const LineChart = ({sessions})=>{
 
 
            // Add the tooltips 
+           let tooltips = svg.append("g")
+                        .attr("class", "focus")
+                        .style("display", "none")
+               tooltips.append("circle")
+                        .attr("r", 3)
+                        .attr("fill", "white") 
+               tooltips.append("rect")
+                        .attr("class", "tooltip")
+                        .attr("width", 60)
+                        .attr("height", 50)
+                        .attr("x", 10)
+                        .attr("y", -22)
+                        .attr("rx", 4)
+                        .attr("ry", 4)
+                        .attr("fill", "white")
+                        .attr("stroke", "white")
+                tooltips.append("text")
+                        .attr("x", 18)
+                        .attr("y", 8)
+                        .text("Durée:")
+                        .style("font-size", "8px");
+                tooltips.append("text")
+                         .attr("class", "tooltips-time")
+                         .attr("x", 22)
+                         .attr("y", 8)         
+                        
+               svg.append("rect")
+                        .attr("class", "overlay")
+                        .style("fill", "none")
+                        .style("pointer-events", "all")
+                        .attr("width", width)
+                        .attr("height", height)
+                        .on("mouseover", function() { tooltips.style("display", null); })
+                        .on("mouseout", function() { tooltips.style("display", "none"); })
+                      //  .on("mousemove", mousemove);
+              /*   let bisecDate = d3.bisector(d => d.day).right;   
+                        function mousemove() {
+                            let x0 = x.invert(d3.pointer(this)[0]),
+                                i = bisecDate(data, x0),
+                                d = data[i]
+                                console.log(i , d)
+                           tooltips.attr("tranform", "translate(" + x(d.day) + "," + y(d.sessionLength) + ")")
+                           d3.select(".tooltips-time").text(d.sessionLength + "min")    
+                        }  */      
+          
+
+             
+            
+
+  
+
 
     }
 

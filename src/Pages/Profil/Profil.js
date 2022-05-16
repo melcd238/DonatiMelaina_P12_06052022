@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
-
-import { getUserMainDataMocked, getUserActivityMocked, getUserAverageSessionsMocked, getUserPerformanceMocked } from '../../Services/CallMockedData';
+import { getUserMainData, getUserActivity, getUserAverageSessions, getUserPerformance  } from "../../Services/CallAPI";
+//import { getUserMainDataMocked, getUserActivityMocked, getUserAverageSessionsMocked, getUserPerformanceMocked } from '../../Services/CallMockedData';
 
 import Title from '../../Components/Title/Title';
 import CardUserData from "../../Components/CardUserData/CardUserData";
@@ -28,27 +28,27 @@ const Profil = ()=>{
    useEffect(()=>{
        /* Faire un if si l'api ne fonctionne pas on set le userData avec les données mockées*/ 
     const getUserData = async ()=>{
-        const response = await getUserMainDataMocked(id);
+        const response = await getUserMainData(id);
         setUserData(response.data)
     }
     const getUserSession = async ()=>{
-        const response = await getUserAverageSessionsMocked(id)
+        const response = await getUserAverageSessions(id)
         setSessions(response.data.sessions)
         
     }
-    const getUserActivity = async ()=>{
-        const response = await getUserActivityMocked(id)
+    const getUserActivitys = async ()=>{
+        const response = await getUserActivity(id)
         setActivity(response.data.sessions)
        
     }
-    const getUserPerformance = async ()=>{
-        const response = await getUserPerformanceMocked(id)
+    const getUserPerformances = async ()=>{
+        const response = await getUserPerformance(id)
         setPerformance(response.data)
     }
         getUserData()
         getUserSession()
-        getUserActivity()
-        getUserPerformance()
+        getUserActivitys()
+        getUserPerformances()
     
    },[id])
 
