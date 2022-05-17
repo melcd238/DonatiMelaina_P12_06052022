@@ -52,12 +52,12 @@ const BarChart = ({activity})=>{
                       .call(d3.axisLeft(y0).ticks(0)).attr("stroke-width",0);
 
             const y1 = d3.scaleLinear()
-                     .domain(d3.extent(data, function(d){return d.kilogram}))
+                     .domain(d3.extent(data, function(d){return d.kilogram }))
                      .range([height  , 0]) 
                      svg.append("g")
                      .attr("class", "y1 axis")
                     .attr('transform', 'translate(755,0)')
-                    .call(d3.axisRight(y1).ticks(3).tickSize(-width)).attr("stroke-width",0.2)
+                    .call(d3.axisRight(y1).ticks(3)).attr("stroke-width", 0)
                     .style("color", "#9B9EAC")
                     .style("font-weight", "500") 
                     .style("font-size","14px");            
@@ -83,7 +83,7 @@ const BarChart = ({activity})=>{
                 .attr("rx", 2)
                 .attr("x", d=>x(d.day) + 40)
                 .attr("width", x.bandwidth()/10)
-                .attr("y", d=>y1(d.kilogram)) 
+                .attr("y", d=>y1(d.kilogram) ) 
                 .attr("height", d=> height - y1(d.kilogram))
                 .attr("fill", "#282D30")
                     

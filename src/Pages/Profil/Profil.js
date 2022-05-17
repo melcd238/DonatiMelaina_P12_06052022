@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { getUserMainData, getUserActivity, getUserAverageSessions, getUserPerformance  } from "../../Services/CallAPI";
-//import { getUserMainDataMocked, getUserActivityMocked, getUserAverageSessionsMocked, getUserPerformanceMocked } from '../../Services/CallMockedData';
+import { getUserMainDataMocked, getUserActivityMocked, getUserAverageSessionsMocked, getUserPerformanceMocked } from '../../Services/CallMockedData';
 
 import Title from '../../Components/Title/Title';
 import CardUserData from "../../Components/CardUserData/CardUserData";
@@ -26,29 +26,50 @@ const Profil = ()=>{
 
 
    useEffect(()=>{
-       /* Faire un if si l'api ne fonctionne pas on set le userData avec les données mockées*/ 
+      
     const getUserData = async ()=>{
-        const response = await getUserMainData(id);
-        setUserData(response.data)
+        let response = await getUserMainData(id);
+         if(!ErrorEvent){
+            setUserData(response.data)
+         } else{
+             response = await getUserMainDataMocked(id);
+             setUserData(response.data)
+         }
     }
-    const getUserSession = async ()=>{
-        const response = await getUserAverageSessions(id)
-        setSessions(response.data.sessions)
         
+    const getUserSession = async ()=>{
+        let response = await getUserAverageSessions(id)
+        if(!ErrorEvent){
+            setSessions(response.data.sessions)
+        } else {
+            response = await getUserAverageSessionsMocked(id)
+            setSessions(response.data.sessions)
+        }
     }
+
     const getUserActivitys = async ()=>{
-        const response = await getUserActivity(id)
-        setActivity(response.data.sessions)
-       
+         let response = await getUserActivity(id)
+         if(!ErrorEvent){
+            setActivity(response.data.sessions) 
+         } else{
+             response = await getUserActivityMocked(id)
+             setActivity(response.data.sessions)
+         }
     }
     const getUserPerformances = async ()=>{
-        const response = await getUserPerformance(id)
-        setPerformance(response.data)
-    }
+        let response = await getUserPerformance(id)
+        if(!ErrorEvent){
+            setPerformance(response.data) 
+        } else{
+            response = await getUserPerformanceMocked(id)
+            setPerformance(response.data)
+        }
+        
+    } 
         getUserData()
         getUserSession()
         getUserActivitys()
-        getUserPerformances()
+       getUserPerformances()
     
    },[id])
 
