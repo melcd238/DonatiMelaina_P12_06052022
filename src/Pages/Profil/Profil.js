@@ -28,41 +28,41 @@ const Profil = ()=>{
    useEffect(()=>{
       
     const getUserData = async ()=>{
-        let response = await getUserMainData(id);
+        const user = await getUserMainData(id);
          if(!ErrorEvent){
-            setUserData(response.data)
+            setUserData(user.data)
          } else{
-             response = await getUserMainDataMocked(id);
-             setUserData(response.data)
+           const userMocked = await getUserMainDataMocked(id);
+             setUserData(userMocked.data)
          }
     }
         
     const getUserSession = async ()=>{
-        let response = await getUserAverageSessions(id)
+        const average = await getUserAverageSessions(id)
         if(!ErrorEvent){
-            setSessions(response.data.sessions)
+            setSessions(average.data.sessions)
         } else {
-            response = await getUserAverageSessionsMocked(id)
-            setSessions(response.data.sessions)
+           const averageMocked = await getUserAverageSessionsMocked(id)
+            setSessions(averageMocked.data.sessions)
         }
     }
 
     const getUserActivitys = async ()=>{
-         let response = await getUserActivity(id)
+         const activity = await getUserActivity(id)
          if(!ErrorEvent){
-            setActivity(response.data.sessions) 
+            setActivity(activity.data.sessions) 
          } else{
-             response = await getUserActivityMocked(id)
-             setActivity(response.data.sessions)
+            const activityMocked = await getUserActivityMocked(id)
+             setActivity(activityMocked.data.sessions)
          }
     }
     const getUserPerformances = async ()=>{
-        let response = await getUserPerformance(id)
+        const perform = await getUserPerformance(id)
         if(!ErrorEvent){
-            setPerformance(response.data) 
+            setPerformance(perform.data) 
         } else{
-            response = await getUserPerformanceMocked(id)
-            setPerformance(response.data)
+           const performMocked = await getUserPerformanceMocked(id)
+            setPerformance(performMocked.data)
         }
         
     } 

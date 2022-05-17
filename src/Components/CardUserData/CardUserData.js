@@ -7,6 +7,8 @@ import Glucid from '../../Assets/carbs-icon.svg';
 import Lipid from '../../Assets/fat-icon.svg';
 
 const CardUserData = ({keyData})=>{
+
+   
     
     return(
         <>

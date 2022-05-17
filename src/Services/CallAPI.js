@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// faire un useFetch pour eviter de se répéter.
+
 
 
 export const getUserMainData = async (id) =>{
