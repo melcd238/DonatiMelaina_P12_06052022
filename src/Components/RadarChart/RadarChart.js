@@ -113,10 +113,10 @@ const RadarChart = ({datas})=>{
             .attr('stroke-width', 1)
             }
             createPolygon(1.2)
-            createPolygon(1.6)
+            createPolygon(1.5)
             createPolygon(2)
-            createPolygon(3)
-            createPolygon(5.5)
+            createPolygon(3.3)
+            createPolygon(6)
 
             // ADD RadialLine of values. 
        

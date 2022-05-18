@@ -15,6 +15,7 @@ const BarChart = ({activity})=>{
         const margin = {top:90,right:40,bottom:30, left:40}
         const width = 835 - margin.left - margin.right
         const height = 320 - margin.top - margin.bottom
+        const minValue = d3.min(data, d=> d.kilogram) - 2
  
          d3.select(elt).select("svg").remove() // remove odl svg
  
@@ -52,7 +53,7 @@ const BarChart = ({activity})=>{
                       .call(d3.axisLeft(y0).ticks(0)).attr("stroke-width",0);
 
             const y1 = d3.scaleLinear()
-                     .domain(d3.extent(data, function(d){return d.kilogram }))
+                     .domain([minValue, d3.max(data, d=> d.kilogram)])
                      .range([height  , 0]) 
                      svg.append("g")
                      .attr("class", "y1 axis")
