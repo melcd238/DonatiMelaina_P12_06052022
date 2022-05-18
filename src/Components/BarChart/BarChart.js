@@ -5,7 +5,7 @@ import { select } from "d3";
 
 const BarChart = ({activity})=>{
    const data = activity;
-   console.log(data)
+ 
 
   
 

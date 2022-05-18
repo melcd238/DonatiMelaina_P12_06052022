@@ -14,10 +14,10 @@ import PieChart from "../../Components/PieChart/PieChart";
 
 
 const Profil = ()=>{
-   const [userData, setUserData] =useState([]) 
+   const [userData, setUserData] =useState({}) 
    const [sessions, setSessions] = useState([])
    const [activity, setActivity] = useState([])
-   const [performance, setPerformance] = useState({})
+   const [performance, setPerformance] = useState([])
    const { id } = useParams()
    
   
@@ -35,6 +35,7 @@ const Profil = ()=>{
            const userMocked = await getUserMainDataMocked(id);
              setUserData(userMocked.data)
          }
+        
     }
         
     const getUserSession = async ()=>{
@@ -59,10 +60,11 @@ const Profil = ()=>{
     const getUserPerformances = async ()=>{
         const perform = await getUserPerformance(id)
         if(!ErrorEvent){
-            setPerformance(perform.data) 
+            setPerformance(perform.data.data) 
+           
         } else{
            const performMocked = await getUserPerformanceMocked(id)
-            setPerformance(performMocked.data)
+            setPerformance(performMocked.data.data)
         }
         
     } 
@@ -83,7 +85,7 @@ return(
               <BarChart activity={activity}/>
             <div className="threeChartsContainer">
               <LineChart sessions={sessions}/> 
-              <RadarChart performance={performance}/>
+              <RadarChart datas={performance}/>
               <PieChart score={userData?.todayScore || userData?.score}/>
               
               
