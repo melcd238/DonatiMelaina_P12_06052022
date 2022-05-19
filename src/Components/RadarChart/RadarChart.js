@@ -61,7 +61,7 @@ const RadarChart = ({datas})=>{
                               
            const Angle = 360 / data.length; 
 
-             const points= [];
+          
           
            // Add Axis from center 
  data.forEach((spend, index)=>{
@@ -78,7 +78,7 @@ const RadarChart = ({datas})=>{
   
                     // Add Text from axis 
            const Path = radialLine([
-            [index * Angle, 0], [index * Angle,maxValue ]
+            [index * Angle, 0], [index * Angle,maxValue + 48 ]
           ])
             const selectIndex = Path.indexOf('L')
             const selectPosition = Path.slice(selectIndex + 1)
@@ -91,7 +91,7 @@ const RadarChart = ({datas})=>{
                .attr('y', Y)
                .style('text-anchor','middle')
                .style('fill','black')
-               .style('font-size', '8px')
+               .style('font-size', '10px')
                .transition()
                .duration(2000)
                .style('fill', 'white')
@@ -103,13 +103,11 @@ const RadarChart = ({datas})=>{
                 .attr('d', radialLine([
                   [index * Angle, 0], [index * Angle,spend.value ]
                 ]))
-                .style('fill', "red")
-                .style("stroke-width", '1')
-                .style("stroke", 'red') 
-            
-             points.push(spend.value)
+                .style('fill', "none")
+                .style("stroke-width", '0')
+                
            }) 
-           console.log(points)
+          
            // create Polygone
            function createPolygon(rad){
             svg.select('#radialChart')
@@ -138,6 +136,12 @@ const RadarChart = ({datas})=>{
             .selectAll('path')
             .data([data])
             .join('path')
+            .attr('d', d3.lineRadial()
+                   .angle((d,i)=>(i* Angle) * (Math.PI / 180))
+                   .radius((d)=>radialScale(d.value))
+                   .curve(d3.curveLinearClosed)
+             )
+             .style('fill', "rgba(255, 1, 1, 0.7)")
      
 
     }
