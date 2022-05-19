@@ -4,7 +4,6 @@ import * as d3 from "d3";
 
 const RadarChart = ({datas})=>{
   const ref = useRef(null)
-
   const data = datas.map((data)=>{
     switch (data.kind){
       case 1 :
@@ -22,6 +21,8 @@ const RadarChart = ({datas})=>{
       default :
       return {...data};
     }
+   
+    
 })
 
    console.log(data)
@@ -52,7 +53,7 @@ const RadarChart = ({datas})=>{
            
            
           const radialScale = d3.scaleLinear()
-                               .domain([0 ,maxValue +10])
+                               .domain([0 ,maxValue + 10])
                                .range([0 , radius])
            const radialLine = d3.lineRadial()
                               .angle(d => d[0] * (Math.PI / 180))
@@ -60,10 +61,10 @@ const RadarChart = ({datas})=>{
                               
            const Angle = 360 / data.length; 
 
-             
+             const points= [];
           
            // Add Axis from center 
-           data.forEach((spend, index)=>{
+ data.forEach((spend, index)=>{
              svg.select('#radialChart')
                  .append('path')
                  .attr('id', `axisPerform${index}`)
@@ -72,7 +73,7 @@ const RadarChart = ({datas})=>{
                  ]))
                  .style('fill', "none")
                  .style("stroke-width", '0,5')
-                 .style("stroke", 'hsla(203, 9%, 17%, 1)')
+                 .style("stroke", 'hsla(203, 9%, 17%, 1)') 
                 
   
                     // Add Text from axis 
@@ -95,8 +96,20 @@ const RadarChart = ({datas})=>{
                .duration(2000)
                .style('fill', 'white')
 
+                // ADD RadialLine of values. 
+                svg.select('#radialChart')
+                .append('path')
+                .attr('id', `axisPerformValue${index}`)
+                .attr('d', radialLine([
+                  [index * Angle, 0], [index * Angle,spend.value ]
+                ]))
+                .style('fill', "red")
+                .style("stroke-width", '1')
+                .style("stroke", 'red') 
+            
+             points.push(spend.value)
            }) 
-
+           console.log(points)
            // create Polygone
            function createPolygon(rad){
             svg.select('#radialChart')
@@ -112,14 +125,19 @@ const RadarChart = ({datas})=>{
             .style('stroke', "white")
             .attr('stroke-width', 1)
             }
-            createPolygon(1.2)
+            createPolygon(1)
             createPolygon(1.5)
             createPolygon(2)
             createPolygon(3.3)
             createPolygon(6)
 
-            // ADD RadialLine of values. 
-       
+            //create polygone of values
+            svg.select('#radialChart')
+            .append('g')
+            .attr('class','poly')
+            .selectAll('path')
+            .data([data])
+            .join('path')
      
 
     }
