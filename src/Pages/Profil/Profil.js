@@ -9,7 +9,7 @@ import BarChart from "../../Components/BarChart/BarChart";
 import LineChart from "../../Components/LineChart/LineChart";
 import RadarChart from "../../Components/RadarChart/RadarChart";
 import PieChart from "../../Components/PieChart/PieChart";
-
+import Error from "../Error/Error";
 
 
 
@@ -20,10 +20,6 @@ const Profil = ()=>{
    const [performance, setPerformance] = useState([])
    const { id } = useParams()
    
-  
-   
-
-
 
    useEffect(()=>{
       
@@ -75,32 +71,38 @@ const Profil = ()=>{
     
    },[id])
 
- 
-return(
+    if(userData === undefined){
+        return <Error/>
+    }
+
+
+    return(
         
-    <main>
-    <Title firstName = {userData.userInfos?.firstName}/>
-    <section className="chartsContainer">
-        <div className="charts">
-              <BarChart activity={activity}/>
-            <div className="threeChartsContainer">
-              <LineChart sessions={sessions}/> 
-              <RadarChart datas={performance}/>
-              <PieChart score={userData?.todayScore || userData?.score}/>
-              
-              
+        <main>
+        <Title firstName = {userData.userInfos?.firstName}/>
+        <section className="chartsContainer">
+            <div className="charts">
+                  <BarChart activity={activity}/>
+                <div className="threeChartsContainer">
+                  <LineChart sessions={sessions}/> 
+                  <RadarChart datas={performance}/>
+                  <PieChart score={userData?.todayScore || userData?.score}/>
+                 </div>
             </div>
-        </div>
-        <div className="cardsContainer">
-          <CardUserData keyData={userData?.keyData}/>
-        </div>
+            <div className="cardsContainer">
+              <CardUserData keyData={userData?.keyData}/>
+            </div>
+    
+        </section>
+     </main>
+    
+    
+       
+    )  
 
-    </section>
- </main>
 
+ 
 
-   
-)  
 
 
 
