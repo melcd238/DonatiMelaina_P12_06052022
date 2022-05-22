@@ -43,7 +43,7 @@ const LineChart = ({sessions})=>{
          const svg = d3 
            .select(elt)
            .append("svg")
-           .attr("preserveAspectRatio", "xMidYMid meet")
+           //.attr("preserveAspectRatio", "xMidYMid meet")
            .attr("height", height + margin.top + margin.bottom )
            .attr("width", width + margin.left + margin.right)
            .append("g")
@@ -91,11 +91,45 @@ const LineChart = ({sessions})=>{
               .data(data)
               .enter()
               .append("circle")
+                 .attr("class","tooltipBasic")
                  .attr("cx", function(d) { return x(d.day) })
                  .attr("cy", function(d) { return y(d.sessionLength)})
-                 .attr("r", 1)
-                 .attr("fill", "#ffffff") 
+                 .attr("r", 18)
+                 .attr("fill", "none")
+                 .style("pointer-events","all")
+                 .on("mouseover", function(event,d) {
+                  divTooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9)
+                    .style("display", "block");
+                  divTooltip.html( d.sessionLength + "min")
+                    .style("left", (event.pageX - 10) + "px")
+                    .style("top", (event.pageY - 28) + "px");
+                  })
+                .on("mouseout", function(d) {
+                  divTooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+                  });
+           
+           // Add Tooltip
+          let divTooltip = d3.select(elt).append("div")
+                       .style("opacty", 0)
+                       .style("display","none")
+                       .style("text-align","center")
+                       .style("padding-top","2px")
+                       .style("position", "absolute")
+                       .style("width","48px")
+                       .style("height","20px")
+                       .style("font-size","12px")
+                       .style("background","white")
+                       .style("border","0px")
+                       .style("border-radius","5px")
+                       .style("pointer-events","none")       
 
+    
+            
+                   
            // Add Legend
            const legend = svg
            .selectAll('.legend')
