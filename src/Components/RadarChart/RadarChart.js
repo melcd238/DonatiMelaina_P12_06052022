@@ -25,7 +25,6 @@ const RadarChart = ({datas})=>{
     
 })
 
-   console.log(data)
    
  
  const DrawRadarChart = (elt , data)=>{
@@ -78,7 +77,7 @@ const RadarChart = ({datas})=>{
   
                     // Add Text from axis 
            const Path = radialLine([
-            [index * Angle, 0], [index * Angle,maxValue + 48 ]
+            [index * Angle, 0], [index * Angle,maxValue + 60 ]
           ])
             const selectIndex = Path.indexOf('L')
             const selectPosition = Path.slice(selectIndex + 1)
@@ -91,7 +90,7 @@ const RadarChart = ({datas})=>{
                .attr('y', Y)
                .style('text-anchor','middle')
                .style('fill','black')
-               .style('font-size', '10px')
+               .style('font-size', '9px')
                .transition()
                .duration(2000)
                .style('fill', 'white')
@@ -105,6 +104,7 @@ const RadarChart = ({datas})=>{
                 ]))
                 .style('fill', "none")
                 .style("stroke-width", '0')
+                .style('stroke', "white")
                 
            }) 
           
@@ -124,10 +124,10 @@ const RadarChart = ({datas})=>{
             .attr('stroke-width', 1)
             }
             createPolygon(1)
-            createPolygon(1.5)
+            createPolygon(1.3)
             createPolygon(2)
             createPolygon(3.3)
-            createPolygon(6)
+            createPolygon(10)
 
             //create polygone of values
             svg.select('#radialChart')

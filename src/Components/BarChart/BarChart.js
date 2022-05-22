@@ -6,16 +6,14 @@ import { select } from "d3";
 const BarChart = ({activity})=>{
    const data = activity;
  
-
-  
-
-    const ref = useRef(null)
+   const ref = useRef(null)
 
     const DrawBarChart = (elt,data)=>{
         const margin = {top:90,right:40,bottom:30, left:40}
         const width = 835 - margin.left - margin.right
         const height = 320 - margin.top - margin.bottom
         const minValue = d3.min(data, d=> d.kilogram) - 2
+
  
          d3.select(elt).select("svg").remove() // remove odl svg
  
@@ -31,7 +29,7 @@ const BarChart = ({activity})=>{
  
             //Add X axis
             const x = d3.scaleBand()
-                          .domain(data.map(d=> d.day))
+                          .domain(data.map(d=> d.day.substr(8,2)))
                           .range([0, width])
                          
                           
@@ -70,7 +68,7 @@ const BarChart = ({activity})=>{
                 .append("rect")
                 .attr("class", "bar")
                 .attr("rx", 2)
-                .attr("x", d=>x(d.day) + 60)
+                .attr("x", d=>x(d.day.substr(8,2)) + 60)
                 .attr("width", x.bandwidth()/10)
                 .attr("y", d=>y0(d.calories)) 
                 .attr("height", d=> height - y0(d.calories))
@@ -82,7 +80,8 @@ const BarChart = ({activity})=>{
                 .append("rect")
                 .attr("class", "bar")
                 .attr("rx", 2)
-                .attr("x", d=>x(d.day) + 40)
+                .attr("x", d=>x(d.day.substr(8,2)) + 60)
+                .attr("x", d=>x(d.day.substr(8,2)) + 40)
                 .attr("width", x.bandwidth()/10)
                 .attr("y", d=>y1(d.kilogram) ) 
                 .attr("height", d=> height - y1(d.kilogram))
@@ -135,15 +134,6 @@ const BarChart = ({activity})=>{
                     .attr('cx',width-108)
                     .attr('cy', 35)
                     .attr("fill", "hsla(0, 100%, 45%, 1)")        
-                         
-            
-               
-               
-               
-          
-                      
-
-
     }
 
     useEffect(()=>{
