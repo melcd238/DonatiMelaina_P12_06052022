@@ -35,7 +35,7 @@ const BarChart = ({activity})=>{
                           
              svg.append("g")
                .attr("transform", "translate(0," + height + ")")
-               .call(d3.axisBottom(x).ticks(7).tickPadding(12).tickSize(0,0))
+               .call(d3.axisBottom(x).ticks(7).tickPadding(12).tickSize(0))
                .attr("stroke-width", 0.8)
                .style("color", "#9B9EAC")
                .style("font-weight", "500") 
@@ -57,7 +57,7 @@ const BarChart = ({activity})=>{
                      .attr("class", "y1 axis")
                     .attr('transform', 'translate(755,0)')
                     .call(d3.axisRight(y1).ticks(3).tickPadding(10).tickSize(-width))
-                    .attr("stroke-width", 0.2)
+                    .attr("stroke-width", 0.3)
                     .attr("stroke-dasharray", "4")
                     .style("color", "#9B9EAC")
                     .style("font-weight", "500") 
@@ -65,11 +65,12 @@ const BarChart = ({activity})=>{
                           
             
              // Add bar 
+
              svg.selectAll(".y0 axis")
                 .data(data)
                 .enter()
                 .append("rect")
-                .attr("class", "bar")
+                .attr("class", "barCal")
                 .attr("rx", 2)
                 .attr("x", d=>x(d.day.substr(8,2)) + 60)
                 .attr("width", x.bandwidth()/10)
@@ -81,7 +82,7 @@ const BarChart = ({activity})=>{
                 .data(data)
                 .enter()
                 .append("rect")
-                .attr("class", "bar")
+                .attr("class", "barKil")
                 .attr("rx", 2)
                 .attr("x", d=>x(d.day.substr(8,2)) + 60)
                 .attr("x", d=>x(d.day.substr(8,2)) + 40)
@@ -89,6 +90,8 @@ const BarChart = ({activity})=>{
                 .attr("y", d=>y1(d.kilogram) ) 
                 .attr("height", d=> height - y1(d.kilogram))
                 .attr("fill", "#282D30")
+
+                    
                     
              // Add Title
              const title = select("svg")
@@ -136,7 +139,10 @@ const BarChart = ({activity})=>{
                     .attr("r","4px") 
                     .attr('cx',width-108)
                     .attr('cy', 35)
-                    .attr("fill", "hsla(0, 100%, 45%, 1)")        
+                    .attr("fill", "hsla(0, 100%, 45%, 1)") 
+                    
+          //TOOLTIPS
+     
     }
 
     useEffect(()=>{
