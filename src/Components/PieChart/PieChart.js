@@ -1,12 +1,19 @@
 import React, {useRef, useEffect} from "react";
 import * as d3 from "d3";
+import PropTypes from "prop-types";
+
+/**
+ * React Comoponent displaying the donut Pie chart of daily objectif
+ * @param {score: number}
+ * @returns {ReactElement}
+ */
 
 
 
 const PieChart = ({score})=>{
    let scoreData = score * 100;
    const data =[{value: scoreData},{value:100 - scoreData}]
-  // console.log(data)
+   
    const ref = useRef(null);
 
     // With D3 : draw SVG
@@ -109,6 +116,10 @@ const PieChart = ({score})=>{
             </div> 
         </div>
     )
+}
+
+PieChart.propTypes ={
+    score : PropTypes.number
 }
 
 export default React.memo(PieChart);
