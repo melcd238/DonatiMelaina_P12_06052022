@@ -1,7 +1,7 @@
 # This project was made with :
-create-react-app
-axios
-d3.js to brind data to life
+create-react-app \
+axios \
+d3.js to brind data to life \
 
 # Install and run the project : 
 
