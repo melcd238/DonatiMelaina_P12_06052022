@@ -35,8 +35,8 @@ const BarChart = ({activity})=>{
                           
              svg.append("g")
                .attr("transform", "translate(0," + height + ")")
-               .call(d3.axisBottom(x).ticks(7).tickSize(0,0))
-               .attr("stroke-width", 0.2)
+               .call(d3.axisBottom(x).ticks(7).tickPadding(12).tickSize(0,0))
+               .attr("stroke-width", 0.8)
                .style("color", "#9B9EAC")
                .style("font-weight", "500") 
                .style("font-size","14px")
@@ -56,10 +56,13 @@ const BarChart = ({activity})=>{
                      svg.append("g")
                      .attr("class", "y1 axis")
                     .attr('transform', 'translate(755,0)')
-                    .call(d3.axisRight(y1).ticks(3)).attr("stroke-width", 0)
+                    .call(d3.axisRight(y1).ticks(3).tickPadding(10).tickSize(-width))
+                    .attr("stroke-width", 0.2)
+                    .attr("stroke-dasharray", "4")
                     .style("color", "#9B9EAC")
                     .style("font-weight", "500") 
-                    .style("font-size","14px");            
+                    .style("font-size","14px");
+                          
             
              // Add bar 
              svg.selectAll(".y0 axis")
