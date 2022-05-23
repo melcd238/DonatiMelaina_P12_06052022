@@ -39,15 +39,18 @@ const BarChart = ({activity})=>{
                           .domain(data.map(d=> d.day.substr(8,2)))
                           .range([0, width])
                          
+                         
                           
              svg.append("g")
+              .attr("class", "xAxis")
                .attr("transform", "translate(0," + height + ")")
                .call(d3.axisBottom(x).ticks(7).tickPadding(12).tickSize(0))
                .attr("stroke-width", 0.8)
                .style("color", "#9B9EAC")
                .style("font-weight", "500") 
                .style("font-size","14px")
-               
+
+           
                
             //Add 2 Y axis
             const y0 = d3.scaleLinear()
@@ -69,6 +72,19 @@ const BarChart = ({activity})=>{
                     .style("color", "#9B9EAC")
                     .style("font-weight", "500") 
                     .style("font-size","14px");
+
+                    svg.append("g")
+                    .selectAll(".xAxis")
+                    .data(data)
+                    .enter()
+                    .append("rect")
+                    .attr("x",d=>x(d.day))
+                   // .attr("y",  d=>y1(d.kilogram)) 
+                    .attr("width",x.bandwidth())
+                    .attr("height", height)
+                    .style("opacity", 0.1)
+                    .style("fill","rgba(196, 196, 196, 0.5)")   
+                    
                           
             
              // Add bar 
@@ -77,7 +93,7 @@ const BarChart = ({activity})=>{
                 .data(data)
                 .enter()
                 .append("rect")
-                .attr("class", "barCal")
+                .attr("class", "bar")
                 .attr("rx", 2)
                 .attr("x", d=>x(d.day.substr(8,2)) + 60)
                 .attr("width", x.bandwidth()/10)
@@ -89,7 +105,7 @@ const BarChart = ({activity})=>{
                 .data(data)
                 .enter()
                 .append("rect")
-                .attr("class", "barKil")
+                .attr("class", "bar")
                 .attr("rx", 2)
                 .attr("x", d=>x(d.day.substr(8,2)) + 60)
                 .attr("x", d=>x(d.day.substr(8,2)) + 40)
@@ -97,8 +113,9 @@ const BarChart = ({activity})=>{
                 .attr("y", d=>y1(d.kilogram) ) 
                 .attr("height", d=> height - y1(d.kilogram))
                 .attr("fill", "#282D30")
+    
 
-                    
+
                     
              // Add Title
              const title = select("svg")

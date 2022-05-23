@@ -68,13 +68,13 @@ const CardUserData = ({keyData})=>{
 }
 
 CardUserData.propTypes={
-    keyData : PropTypes.objectOf(
-        PropTypes.shape({
+    keyData : PropTypes.shape(
+        {
             calorieCount : PropTypes.number,
             proteinCount:PropTypes.number,
             carbohydrateCount: PropTypes.number,
             lipidCount:PropTypes.number
-        })
+        }
     )
 }
 

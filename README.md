@@ -1,9 +1,8 @@
 # This project was made with :
 <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/>  \
 <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"/> \
-
 axios \
-d3.js to brind data to life \
+d3.js to brind data to life 
 
 # Install and run the project : 
 
