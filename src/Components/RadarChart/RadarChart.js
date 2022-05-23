@@ -3,8 +3,8 @@ import * as d3 from "d3";
 import PropTypes from "prop-types";
 
 /**
- * React Comoponent displaying Radar chart of daily kind
- * @param {datas: array} : array of object displaying value and kind
+ * React Comoponent displaying Radar chart of daily kind of activity
+ * @param {datas: array} : array of object displaying value and kind of activity
  * @function DrawRadarChart : draw the svg of the radar chart
  * @returns {JSX}
  */
