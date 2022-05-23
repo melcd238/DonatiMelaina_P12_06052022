@@ -89,7 +89,7 @@ const BarChart = ({activity})=>{
                                   divTooltip.transition()
                                   .duration(200)
                                   .style("display", "block");
-                                  divTooltip.html(d.kilogram  +  "kg" + " " + d.calories + "Kcal")
+                                  divTooltip.html(d.kilogram  +  "kg   "  + d.calories + "Kcal")
                                   .style("left",  (event.pageX - 10) + "px")
                                   .style("top", ( 400) + "px");
                       
@@ -139,7 +139,7 @@ const BarChart = ({activity})=>{
           let divTooltip = d3.select(elt).append("div")
           .style("display","none")
           .style("text-align","center")
-          .style("padding-top","8px")
+          .style("padding-top","21px")
           .style("position", "absolute")
           .style("width","39px")
           .style("height","63px")

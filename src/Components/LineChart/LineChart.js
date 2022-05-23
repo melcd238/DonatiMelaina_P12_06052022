@@ -98,19 +98,21 @@ const LineChart = ({sessions})=>{
                  .attr("class","tooltipBasic")
                  .attr("cx", function(d) { return x(d.day) })
                  .attr("cy", function(d) { return y(d.sessionLength)})
-                 .attr("r", 18)
+                 .attr("r", 6)
                  .attr("fill", "none")
                  .style("pointer-events","all")
                  .on("mouseover", function(event,d) {
+                  d3.select(this).transition().duration(200).attr("fill","white")
                   divTooltip.transition()
                     .duration(200)
                     .style("opacity", .9)
                     .style("display", "block");
                   divTooltip.html( d.sessionLength +  " min")
                     .style("left", (event.pageX - 10) + "px")
-                    .style("top", (event.pageY - 28) + "px");
+                    .style("top", (event.pageY - 40) + "px");
                   })
                 .on("mouseout", function(d) {
+                  d3.select(this).transition().duration(200).attr("fill","none")
                   divTooltip.transition()
                     .duration(500)
                     .style("opacity", 0);
