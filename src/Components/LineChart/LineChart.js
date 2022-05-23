@@ -130,7 +130,7 @@ const LineChart = ({sessions})=>{
                        .style("font-size","8px")
                        .style("background","white")
                        .style("border","0px")
-                       .style("border-radius","5px")
+                       .style("border-radius","2px")
                        .style("pointer-events","none")       
 
     

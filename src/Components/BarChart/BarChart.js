@@ -147,7 +147,7 @@ const BarChart = ({activity})=>{
           .style("color","white")
           .style("background","#E60000")
           .style("border","0px")
-          .style("border-radius","5px")
+          .style("border-radius","2px")
           .style("pointer-events","none")       
 
 
