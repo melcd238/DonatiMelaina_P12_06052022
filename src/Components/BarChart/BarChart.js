@@ -49,7 +49,6 @@ const BarChart = ({activity})=>{
                .style("color", "#9B9EAC")
                .style("font-weight", "500") 
                .style("font-size","14px")
-
            
                
             //Add 2 Y axis
@@ -73,33 +72,54 @@ const BarChart = ({activity})=>{
                     .style("font-weight", "500") 
                     .style("font-size","14px");
 
-                    svg.append("g")
-                    .selectAll(".xAxis")
-                    .data(data)
-                    .enter()
-                    .append("rect")
-                    .attr("x",d=>x(d.day))
-                   // .attr("y",  d=>y1(d.kilogram)) 
-                    .attr("width",x.bandwidth())
-                    .attr("height", height)
-                    .style("opacity", 0.1)
-                    .style("fill","rgba(196, 196, 196, 0.5)")   
+              // Add rectangles appears on mouseover
                     
-                          
-            
+               let rectangle = svg.selectAll("rect").data(data);
+               rectangle.enter().append("rect")
+                                .attr("width",x.bandwidth())
+                                .attr("height", height)
+                                .attr("x",function(d,i){return i*108})
+                                . attr("y", 0)
+                                .style("opacity", 0)
+                                .style("fill","rgba(196, 196, 196, 0.5)")
+                                .style("pointer-events","all") 
+                                .on("mouseover", function(event,d) {
+                                    
+                                  d3.select(this).transition().duration(200).style("opacity", .9)
+                                  divTooltip.transition()
+                                  .duration(200)
+                                  .style("display", "block");
+                                  divTooltip.html(d.kilogram  +  "kg" + " " + d.calories + "Kcal")
+                                  .style("left",  (event.pageX - 10) + "px")
+                                  .style("top", ( 400) + "px");
+                      
+                                  })
+                                  .on("mouseout", function(d) {
+                                    d3.select(this).transition()
+                                      .duration(200)
+                                      .style("opacity", 0);
+                                      divTooltip.transition()
+                                      .duration(200)
+                                      .style("display", "none");  
+                                    });
+
+
              // Add bar 
              svg.append("g")
                 .selectAll(".y0 axis")
                 .data(data)
                 .enter()
                 .append("rect")
-                .attr("class", "bar")
+                .attr("class", "barCal")
                 .attr("rx", 2)
                 .attr("x", d=>x(d.day.substr(8,2)) + 60)
                 .attr("width", x.bandwidth()/10)
                 .attr("y", d=>y0(d.calories)) 
                 .attr("height", d=> height - y0(d.calories))
                 .attr("fill", "hsla(0, 100%, 45%, 1)")
+              
+               
+
               svg.append("g")
                 .selectAll(".y1 axis")
                 .data(data)
@@ -114,6 +134,21 @@ const BarChart = ({activity})=>{
                 .attr("height", d=> height - y1(d.kilogram))
                 .attr("fill", "#282D30")
     
+            // Add Tooltip
+               // Add Tooltip
+          let divTooltip = d3.select(elt).append("div")
+          .style("display","none")
+          .style("text-align","center")
+          .style("padding-top","8px")
+          .style("position", "absolute")
+          .style("width","39px")
+          .style("height","63px")
+          .style("font-size","7px")
+          .style("color","white")
+          .style("background","#E60000")
+          .style("border","0px")
+          .style("border-radius","5px")
+          .style("pointer-events","none")       
 
 
                     
