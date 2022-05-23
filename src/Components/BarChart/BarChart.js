@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 /**
  * React Comoponent displaying the Bar chart  of daily activity
  * @param {{ activity : array}} : array of object with data for the Bar chart 
+ * @function DrawBarChart : Draw the svg Bar chart with D3.js
  * @returns {JSX}
  */
 

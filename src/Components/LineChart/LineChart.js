@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 /**
  * React Comoponent displaying the Line chart  of session length
  * @param {{ sessions : array}} : array of object with data for the Line chart 
+ * @function DrawLineChart : Draw the svg line chart with d3.js
  * @returns {JSX}
  */
 

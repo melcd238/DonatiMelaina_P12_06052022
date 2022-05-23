@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 /**
  * React Comoponent displaying the donut Pie chart of daily objectif
  * @param {score: number}
+ * @function DrawPieChart : Draw the svg pie chart with D3.js
  * @returns {JSX}
  */
 

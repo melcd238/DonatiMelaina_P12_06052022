@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 /**
  * React Comoponent displaying Radar chart of daily kind
  * @param {datas: array} : array of object displaying value and kind
+ * @function DrawRadarChart : draw the svg of the radar chart
  * @returns {JSX}
  */
 
