@@ -1,10 +1,17 @@
-import React from "react"
+import React from "react";
+import PropTypes from "prop-types";
 
 //logos
 import Calorie from '../../Assets/calories-icon.svg';
 import Protein from '../../Assets/protein-icon.svg';
 import Glucid from '../../Assets/carbs-icon.svg';
 import Lipid from '../../Assets/fat-icon.svg';
+
+/**
+ * React Comoponent displaying the User Card of nutriments
+ * @param {{ keyData : object}} :  object with data to display to  the user card
+ * @returns {JSX}
+ */
 
 const CardUserData = ({keyData})=>{
 
@@ -60,4 +67,15 @@ const CardUserData = ({keyData})=>{
     )
 }
 
-export default CardUserData;
+CardUserData.propTypes={
+    keyData : PropTypes.objectOf(
+        PropTypes.shape({
+            calorieCount : PropTypes.number,
+            proteinCount:PropTypes.number,
+            carbohydrateCount: PropTypes.number,
+            lipidCount:PropTypes.number
+        })
+    )
+}
+
+export default React.memo(CardUserData);

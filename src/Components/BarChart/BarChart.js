@@ -1,7 +1,13 @@
 import React, {useRef, useEffect}  from "react"
 import * as d3 from "d3";
 import { select } from "d3";
+import PropTypes from "prop-types";
 
+/**
+ * React Comoponent displaying the Bar chart  of daily activity
+ * @param {{ activity : array}} : array of object with data for the Bar chart 
+ * @returns {JSX}
+ */
 
 const BarChart = ({activity})=>{
    const data = activity;
@@ -65,8 +71,8 @@ const BarChart = ({activity})=>{
                           
             
              // Add bar 
-
-             svg.selectAll(".y0 axis")
+             svg.append("g")
+                .selectAll(".y0 axis")
                 .data(data)
                 .enter()
                 .append("rect")
@@ -77,8 +83,8 @@ const BarChart = ({activity})=>{
                 .attr("y", d=>y0(d.calories)) 
                 .attr("height", d=> height - y0(d.calories))
                 .attr("fill", "hsla(0, 100%, 45%, 1)")
-
-                svg.selectAll(".y1 axis")
+              svg.append("g")
+                .selectAll(".y1 axis")
                 .data(data)
                 .enter()
                 .append("rect")
@@ -160,6 +166,16 @@ const BarChart = ({activity})=>{
         <div className="BarChartContainer" ref={ref}>
         </div>
     )
+}
+
+BarChart.prototype={
+  activity : PropTypes.arrayOf(
+    PropTypes.shape({
+      day: PropTypes.string,
+      kilogram: PropTypes.number,
+      calories:PropTypes.number
+    })
+  )
 }
 
 export default React.memo(BarChart);

@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 /**
  * React Comoponent displaying the donut Pie chart of daily objectif
  * @param {score: number}
- * @returns {ReactElement}
+ * @returns {JSX}
  */
 
 

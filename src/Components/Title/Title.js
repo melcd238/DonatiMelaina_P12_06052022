@@ -1,4 +1,10 @@
 import React  from 'react';
+import PropTypes from "prop-types";;
+/**
+ * React Comoponent displaying the firstName in the title
+ * @param {firstName: string} 
+ * @returns {JSX}
+ */
 
 
 const Title = ({firstName})=>{
@@ -10,5 +16,8 @@ const Title = ({firstName})=>{
         </section>
     )
 }
+Title.prototype ={
+  firstName : PropTypes.string
+}
 
-export default Title;
+export default React.memo(Title);

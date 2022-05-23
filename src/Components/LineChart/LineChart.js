@@ -1,13 +1,16 @@
 import React, {useRef, useEffect}  from "react"
 import * as d3 from "d3";
+import PropTypes from "prop-types";
 
 
-
+/**
+ * React Comoponent displaying the Line chart  of session length
+ * @param {{ sessions : array}} : array of object with data for the Line chart 
+ * @returns {JSX}
+ */
 
 
 const LineChart = ({sessions})=>{
-   
-   
     const data = sessions.map((data)=>{
       switch (data.day){
         case 1 :
@@ -163,18 +166,6 @@ const LineChart = ({sessions})=>{
               .style('font-size', "14px")
               .style('font-weight', '500')  
 
-
-           // Add the tooltips 
-         
-          // Find the closest X index of the mouse:
-         // let bisect = d3.bisector(function(d){return d.x;}).left;
-
-     
-        
-
-  
-
-
     }
 
 
@@ -189,6 +180,15 @@ const LineChart = ({sessions})=>{
         <div className="LineChartContainer" ref={ref}>
         </div>
     )
+}
+
+LineChart.prototype={
+  sessions : PropTypes.arrayOf(
+    PropTypes.shape({
+      day: PropTypes.number,
+      sessionLength: PropTypes.number,
+    })
+  )
 }
 
 export default React.memo(LineChart);

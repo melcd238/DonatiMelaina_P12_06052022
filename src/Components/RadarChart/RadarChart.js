@@ -1,8 +1,16 @@
 import React, {useRef, useEffect}  from "react"
 import * as d3 from "d3";
+import PropTypes from "prop-types";
+
+/**
+ * React Comoponent displaying Radar chart of daily kind
+ * @param {datas: array} : array of object displaying value and kind
+ * @returns {JSX}
+ */
 
 
 const RadarChart = ({datas})=>{
+  console.log(datas)
   const ref = useRef(null)
   const data = datas.map((data)=>{
     switch (data.kind){
@@ -158,6 +166,15 @@ const RadarChart = ({datas})=>{
         <div className="RadarChartContainer" ref={ref}>
         </div>
     )
+}
+
+RadarChart.prototype={
+  datas : PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.number,
+      kind: PropTypes.number,
+    })
+  )
 }
 
 export default  React.memo(RadarChart); 
