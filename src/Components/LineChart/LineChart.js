@@ -105,17 +105,27 @@ const LineChart = ({sessions})=>{
                   d3.select(this).transition().duration(200).attr("fill","white")
                   divTooltip.transition()
                     .duration(200)
-                    .style("opacity", .9)
+                    .style("opacity", 1)
                     .style("display", "block");
                   divTooltip.html( d.sessionLength +  " min")
-                    .style("left", (event.pageX - 10) + "px")
+                    .style("left", (event.pageX - 5) + "px")
                     .style("top", (event.pageY - 40) + "px");
+                   backgroundDiv.transition().duration(200)
+                   .style("top", (700) + "px")
+                   .style("width",(event.pageX - 228) + "px")
+                   .style("display", "block")
+                   .style("opacity", .4);
+                   d3.select(elt).transition().duration(200).style("background","#E60000")
+                   
                   })
                 .on("mouseout", function(d) {
                   d3.select(this).transition().duration(200).attr("fill","none")
                   divTooltip.transition()
                     .duration(500)
                     .style("opacity", 0);
+                    backgroundDiv.transition().duration(200)
+                    .style("display","none") 
+                    d3.select(elt).transition().duration(200).style("background","#FF0000") 
                   });
            
            // Add Tooltip
@@ -131,10 +141,17 @@ const LineChart = ({sessions})=>{
                        .style("background","white")
                        .style("border","0px")
                        .style("border-radius","2px")
-                       .style("pointer-events","none")       
-
-    
-            
+                       .style("pointer-events","none") 
+                       .style("zindex","10")      
+          // Add Div for background red
+          let backgroundDiv = d3.select(elt).append("div")
+                            .style('background',"#FF0000")
+                            .style("height","262px")
+                            .style("position", "absolute")
+                            .style("pointer-events","none")
+                            .style("display","none")
+                            .style("border-top-left-radius", "5px")
+                            .style("border-bottom-left-radius", "5px")  
                    
            // Add Legend
            const legend = svg
