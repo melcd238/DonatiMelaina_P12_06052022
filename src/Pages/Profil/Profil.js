@@ -24,7 +24,7 @@ const Profil = ()=>{
    
   useEffect(()=>{
     const getAllData = async(id)=>{
-      if(!ErrorEvent){ // A modifier avec une variable d'environnement
+      if(process.env.REACT_APP_URL1 ||process.env.REACT_APP_URL2){ 
         const user =  await getUserMainData(id);
         const average = await getUserAverageSessions(id);
         const activity = await getUserActivity(id);
