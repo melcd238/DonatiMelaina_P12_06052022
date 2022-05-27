@@ -11,7 +11,6 @@ import PropTypes from "prop-types";
 
 
 const RadarChart = ({datas})=>{
-  console.log(datas)
   const ref = useRef(null)
   const data = datas.map((data)=>{
     switch (data.kind){
