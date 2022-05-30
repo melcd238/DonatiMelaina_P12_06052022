@@ -23,6 +23,7 @@ Launch with npm start
 
 Clone this repository : git clone https://github.com/melcd238/DonatiMelaina_P12_06052022.git \
 Run npm install to install dependencies. \
+In the Services folder, go to the getAllData.js file and follow the instructions. \
 Launch with npm start
 
 
