@@ -15,7 +15,7 @@ import Lipid from '../../Assets/fat-icon.svg';
 
 const CardUserData = ({keyData})=>{
 
-   
+
     
     return(
         <>
@@ -24,7 +24,7 @@ const CardUserData = ({keyData})=>{
                    <img src={Calorie} alt="logo calories"/>
                </div>
                <div className="cardText">
-                   <p className="unit">{keyData?.calorieCount}Kcal</p>
+                   <p className="unit">{new Intl.NumberFormat("en-IN").format(keyData?.calorieCount)}Kcal</p>
                    <p className="nutri">Calories</p>
                </div>
           </div>
