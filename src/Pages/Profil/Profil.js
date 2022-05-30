@@ -7,8 +7,9 @@ import LineChart from "../../Components/LineChart/LineChart";
 import RadarChart from "../../Components/RadarChart/RadarChart";
 import PieChart from "../../Components/PieChart/PieChart";
 import Error from "../Error/Error";
-import { getUserMainData, getUserActivity, getUserAverageSessions, getUserPerformance  } from "../../Services/CallAPI";
-import { getUserMainDataMocked, getUserActivityMocked, getUserAverageSessionsMocked, getUserPerformanceMocked } from '../../Services/CallMockedData';
+import { getAllData } from "../../Services/getAllData";
+
+
 
 
 const Profil = ()=>{
@@ -23,40 +24,18 @@ const Profil = ()=>{
    
    
   useEffect(()=>{
-    const getAllData = async(id)=>{
-      if(process.env.REACT_APP_URL1 ||process.env.REACT_APP_URL2){ 
-        const user =  await getUserMainData(id);
-        const average = await getUserAverageSessions(id);
-        const activity = await getUserActivity(id);
-        const perform = await getUserPerformance(id);
-        Promise.all([user, average, activity,perform]).then((values)=> {
+    getAllData(id)
+      .then((values)=>{
             setKeydata(values[0].data.keyData)
             setUserData(values[0].data.userInfos.firstName)
             setUserScore(values[0].data.todayScore ||values[0].data.score)
             setActivity(values[2].data.sessions)
             setPerformance(values[3].data.data)
             setSessions(values[1].data.sessions)
-          }).catch((error)=>{
-              console.log(error)
-          });  
-
-      } else{
-        const user =  await getUserMainDataMocked(id);
-        const average = await getUserAverageSessionsMocked(id);
-        const activity = await getUserActivityMocked(id);
-        const perform = await getUserPerformanceMocked(id);
-        Promise.all([user, average, activity,perform]).then((values)=> {
-            setKeydata(values[0].data.keyData)
-            setUserData(values[0].data.userInfos.firstName)
-            setUserScore(values[0].data.todayScore ||values[0].data.score)
-            setActivity(values[2].data.sessions)
-            setPerformance(values[3].data.data)
-            setSessions(values[1].data.sessions)
-          }).catch((error)=>{
-              console.log(error)
-          });  
-    }}
-     getAllData(id)
+      }).catch((error)=>{
+        console.log(error)
+    });  
+  
    },[id])
 
     if(userData === undefined){

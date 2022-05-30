@@ -17,7 +17,7 @@ if(location.pathname === "/"){
     </>
 )
 
-} else{
+} else {
   return(
     <>
     <Header/>
