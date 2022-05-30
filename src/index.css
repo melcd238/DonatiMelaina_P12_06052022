@@ -16,11 +16,10 @@ Variables
   --clr-red-radar:hsla(0, 100%, 50%, 0.7) ;
   --transition: all 0.3s linear;
   --spacing: 0.1rem;
-  --radius: 0.3125rem;
+  --radius: 5px;
   --gray-header-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   --card-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
-  --min-width: 1024px;
-  --min-height: 780px;
+
 }
 /*
 =============== 
@@ -195,7 +194,7 @@ CardUserData
   box-shadow:var(--card-shadow);
   width:258px;
   height:124px;
-  border-radius:5px;
+  border-radius:var(--radius);
   display:flex;
   align-items: center;
 }
@@ -241,7 +240,7 @@ LineChart
   height:263px;
   background:var(--clr-red-sessionDuration-bg);
   box-shadow:var(--card-shadow);
-  border-radius: 5px;
+  border-radius: var(--radius);
 }
 
   /*
@@ -255,7 +254,7 @@ RadarChart
   height:263px;
   background: hsla(203, 9%, 17%, 1);
   box-shadow:var(--card-shadow);
-  border-radius: 5px;
+  border-radius:  var(--radius);
 }
   /*
 =============== 
@@ -267,7 +266,7 @@ PieChart
   height:263px;
   background-color:var(--clr-bg-gray);
   box-shadow:var(--card-shadow);
-  border-radius: 5px;
+  border-radius:  var(--radius);
   display:flex;
   flex-direction:column;
   align-items: center;
