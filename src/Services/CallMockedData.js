@@ -5,7 +5,7 @@ import { USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_MAIN_DATA, USER_PERFORMANCE 
 
 
 
-export const getUserMainDataMocked = async (id) =>{
+export const getUserMainData= async (id) =>{
     try {
          // eslint-disable-next-line
         const response = USER_MAIN_DATA.find((elt)=> elt.id == id)
@@ -15,7 +15,7 @@ export const getUserMainDataMocked = async (id) =>{
     }
 }
 
-export const getUserActivityMocked = async(id)=>{
+export const getUserActivity = async(id)=>{
 
 
     try {
@@ -28,7 +28,7 @@ export const getUserActivityMocked = async(id)=>{
     }
 }
 
-export const getUserAverageSessionsMocked = async(id)=>{
+export const getUserAverageSessions = async(id)=>{
 
     try {
          // eslint-disable-next-line
@@ -40,7 +40,7 @@ export const getUserAverageSessionsMocked = async(id)=>{
     }
 }
 
-export const getUserPerformanceMocked= async(id)=>{
+export const getUserPerformance= async(id)=>{
 
     try {
          // eslint-disable-next-line
