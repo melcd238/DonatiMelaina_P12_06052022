@@ -13,7 +13,7 @@ export const getAllData = async (id)=>{
 
 
 
-// If you want to use Mocked data, use the import from CallMockedData and the following varaibles 
+// If you want to use Mocked data, use the import from CallMockedData and the following variables 
 
 /*      const user =  await getUserMainDataMocked(id);
         const average = await getUserAverageSessionsMocked(id);

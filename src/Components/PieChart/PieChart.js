@@ -2,6 +2,7 @@ import React, {useRef, useEffect} from "react";
 import * as d3 from "d3";
 import PropTypes from "prop-types";
 
+
 /**
  * React Comoponent displaying the donut Pie chart of daily objectif
  * @param {score: number}
@@ -101,14 +102,14 @@ const PieChart = ({score})=>{
 
 
     
-    }
+    } 
 
 
   useEffect(() => {
     if (ref.current) {
       DrawPieChart(ref.current, data);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
     return(
         <div className="PieChartContainer">
