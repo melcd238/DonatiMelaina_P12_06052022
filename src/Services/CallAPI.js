@@ -1,6 +1,13 @@
 import axios from 'axios';
  
-
+/**
+ * functions that returns the  API data depending on the id using axios
+ * @function getUserMainData
+ * @function getUserActivity
+ * @function getUserAverageSessions
+ * @function getUserPerformance
+ * @returns {response.data}
+ */
 
 
 export const getUserMainData = async (id) =>{

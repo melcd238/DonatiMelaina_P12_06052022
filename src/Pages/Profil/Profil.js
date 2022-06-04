@@ -9,7 +9,9 @@ import PieChart from "../../Components/PieChart/PieChart";
 import Error from "../Error/Error";
 import { getAllData } from "../../Services/getAllData";
 
-
+/**Render the Profil
+ * @return {JSX}
+ */
 
 
 const Profil = ()=>{

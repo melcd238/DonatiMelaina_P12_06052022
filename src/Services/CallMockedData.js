@@ -1,7 +1,14 @@
 
 import { USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_MAIN_DATA, USER_PERFORMANCE } from '../Data/DataMocked'
 
-
+/**
+ * functions that returns the  mocked data depending on the id
+ * @function getUserMainDataMocked
+ * @function getUserActivityMocked
+ * @function getUserAverageSessionsMocked
+ * @function getUserPerformanceMocked
+ * @returns {data : response}
+ */
 
 
 

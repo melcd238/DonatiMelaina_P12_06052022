@@ -2,7 +2,11 @@
 import { getUserMainData, getUserActivity, getUserAverageSessions, getUserPerformance  } from "./CallAPI"
 import { getUserMainDataMocked, getUserActivityMocked, getUserAverageSessionsMocked, getUserPerformanceMocked } from './CallMockedData';
 
-// To use Mocked Data, switch the import from CallMockedData and To use extern API switch the import from CallAPI
+/**
+ * function that returns the data according to the API data or the mocked data thanks to the environment variables
+ * @function getAllData : return array with Promise.all 
+ * @returns [Promise.all]
+ */
 
 export const getAllData = async (id)=>{
    if(process.env.REACT_APP_DATA_SOURCE === "API"){
