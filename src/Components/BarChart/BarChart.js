@@ -221,7 +221,7 @@ const BarChart = ({activity})=>{
     )
 }
 
-BarChart.prototype={
+BarChart.propTypes={
   activity : PropTypes.arrayOf(
     PropTypes.shape({
       day: PropTypes.string,

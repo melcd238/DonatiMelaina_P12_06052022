@@ -202,7 +202,7 @@ const LineChart = ({sessions})=>{
     )
 }
 
-LineChart.prototype={
+LineChart.proTypes={
   sessions : PropTypes.arrayOf(
     PropTypes.shape({
       day: PropTypes.number,

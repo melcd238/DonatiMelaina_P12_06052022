@@ -8,10 +8,11 @@ const Header = () =>{
 
     return(
          <header>
-            <div className="logo"> 
-                 <img src={logo} alt="logo de sportsee"/>
-            </div>
-            <nav>
+              <div className="logo">
+                <img src={logo} alt="logo de sportsee"/>
+             </div>
+            <nav className="navBar">
+            
                 <ul className="navList">
                     <li><Link className="linkNav" to="/">Accueil</Link></li>
                     <li>Profil</li>

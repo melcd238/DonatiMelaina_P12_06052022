@@ -46,13 +46,9 @@ const PieChart = ({score})=>{
              .transition()
              .duration(700)
              .attr("stroke-width", 8); 
-    
-        
-        const arcGenerator = d3.arc().cornerRadius(18).innerRadius(220).outerRadius(250);
-
-        const pieGenerator = d3.pie().value((d) => d.value);
-           
-        const arcs = svg.selectAll().data(pieGenerator(data)).enter();
+     const arcGenerator = d3.arc().cornerRadius(18).innerRadius(220).outerRadius(250);
+     const pieGenerator = d3.pie().value((d) => d.value);
+      const arcs = svg.selectAll().data(pieGenerator(data)).enter();
              arcs
                .append("path")
                .attr("d", arcGenerator)  
